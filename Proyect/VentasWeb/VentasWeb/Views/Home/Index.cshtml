@@ -1,0 +1,429 @@
+﻿@{
+    ViewBag.Title = "Home Page";
+}
+
+<body>
+
+    <div class="row">
+
+        <card class=" col-xl-3 col-md-6">
+            <div class="card text-light mb-4" style="background-color: #006fa0;">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-sm-9">
+                            <h6 style="font-weight: bold; font-size: 12px">PRODUCTOS EN TIENDA</h6>
+                            <h6 id="totalproducto" style="font-weight: bold; font-size: 24px">0</h6>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <i class="fas fa-people-carry fa-2x"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </card>
+
+        <card class=" col-xl-3 col-md-6">
+            <div class="card text-light mb-4" style="background-color: #b62525;">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-sm-9">
+                            <h6 style="font-weight: bold; font-size: 12px">TOTAL VENTAS</h6>
+                            <h6 id="totalventa" style="font-weight: bold; font-size: 24px">0</h6>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <i class="fas fa-cash-register fa-2x"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </card>
+
+        <card class=" col-xl-3 col-md-6">
+            <div class="card text-light mb-4" style="background-color: #3c8025; ">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-sm-9">
+                            <h6 style="font-weight: bold; font-size: 12px">TOTAL CLIENTES</h6>
+                            <h6 id="totalcliente" style="font-weight: bold; font-size: 24px">0</h6>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <i class="fas fa-users fa-2x"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </card>
+
+        <card class="col-xl-3 col-md-6">
+            <div class="card text-light mb-4" style="background-color: #b69f31; ">
+                <div class="card-body">
+                    <div class="row">
+
+                        <div class="col-sm-9">
+                            <h6 style="font-weight: bold; font-size: 12px">CATEGORIAS</h6>
+                            <h6 id="totalcategoria" style="font-weight: bold; font-size: 24px">0</h6>
+                        </div>
+
+                        <div class="col-sm-3">
+                            <i class="fas fa-box-open fa-2x"></i>
+                        </div>
+
+                    </div>
+                </div>
+            </div>
+        </card>
+
+    </div>
+
+    @* Graficos *@
+
+    <br />
+
+    <div class="row" style="text-align:center">
+
+        <div class="col-lg-4">
+
+            <div class="card">
+                <div class="card-header text-black" style="background: #ddf6f6 "><b>STOCK DE PRODUCTOS</b></div>
+
+                <div class="card-body" style="background: #ddf6f6 ">
+                    <canvas id="myLineChart" width="50" height="50"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card">
+                <div class="card-header" style="background: #ddf6f6 "><b>VENTAS - ULTIMOS 5 MESES</b></div>
+
+                <div class="card-body" style="background: #ddf6f6">
+                    <canvas id="myBarChart" width="50" height="50"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+        <div class="col-lg-4">
+
+            <div class="card">
+                <div class="card-header text-black" style="background: #ddf6f6 "><b>PRODUCTOS MAS VENDIDOS</b></div>
+
+                <div class="card-body" style="background: #ddf6f6 ">
+                    <canvas id="myPieChart" width="50" height="50"></canvas>
+                </div>
+            </div>
+
+        </div>
+
+    </div>
+
+    <br />
+
+    @* Resumen ventas *@
+    <div class="card mb-4">
+
+        <div class="card-header text-black" style="background-color: #ddf6f6; text-align:center; font-size:20px; font-weight:bold;">
+            <i class="fas fa-money-check-alt fa-1x"></i>
+            REPORTE DE VENTAS
+        </div>
+
+        <div class="card-body" style="background-color: #a6e4e241 ">
+
+            <div class="row">
+                <div class="col-sm-12">
+                    <table id="tabla" class="display cell-border" style="width:100%">
+                        <thead>
+                            <tr>
+                                <th>Cliente</th>
+                                <th>Télefono</th>
+                                <th>Producto</th>
+                                <th>Cantidad</th>
+                                <th>Total</th>
+                                <th>Fecha</th>
+                                <th>Vendedor</th>
+                                <th>ID venta</th>
+                                <th>Documento</th>
+                            </tr>
+                        </thead>
+                        <tbody>
+                        </tbody>
+                    </table>
+                </div>
+                
+                <a class="btn btn-info text-black" style="font-weight:bold; position:absolute;right:712px;top:590px" href="@Url.Action("Consultar","Venta")"> <i class="fas fa-plus-circle fa-1x"></i> VER MAS...</a>
+
+            </div>
+
+        </div>
+    </div>
+
+    <br />
+
+    @* Pie de Pagina *@
+
+    <div class="row" style="text-align: center; font-family: 'Times New Roman', Times, serif">
+
+        <div class="col-lg-12">
+
+            @*<div class="card">*@
+
+            <div class="card-body" style="background: #f2f2f2 ">
+                <p class="lead">@ViewBag.NombreUsuario - @ViewBag.RolUsuario</p>
+            </div>
+
+            @*</div>*@
+
+        </div>
+
+    </div>
+
+</body>
+
+@section Scripts2{
+
+    <script>
+
+        jQuery.ajax({
+                url: '@Url.Action("VistaDashBoard", "Home")',
+                type: "GET",
+                dataType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    var objeto = data.resultado;
+
+                    $("#totalproducto").text(objeto.TotalProductos)
+                    $("#totalventa").text(objeto.TotalVentas)
+                    $("#totalcliente").text(objeto.TotalClientes)
+                    $("#totalcategoria").text(objeto.TotalCategoria)
+
+                }
+        });
+
+        $(document).ready(function () {
+
+                jQuery.ajax({
+                    url: '@Url.Action("Graficos", "Home")',
+                    type: 'GET',
+                    datType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        console.log(data)
+
+                        var arrayMeses = [];
+                        var arrayCantidad = [];
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            //console.log(data[i].mes)
+                            arrayMeses.push(data[i].Mes)
+                            arrayCantidad.push(data[i].TotalCosto)
+                        }
+
+                        var controlBar = document.getElementById("myBarChart");
+
+                        var graficoBar = new Chart(controlBar, {
+                            type: 'line',
+                            data: {
+                                labels: arrayMeses,
+                                datasets: [
+                                    {
+                                        label: "Total",
+                                        backgroundColor: '#4b96c838',
+                                        borderColor: "#000000",
+                                        borderWidth: 2,
+                                        pointBorderColor: "#000000",
+                                        pointBackgroundColor: ['#95ee3c', '#51efef', '#c49be4', '#95ee3c', '#51efef', "#c49be4"],
+                                        data: arrayCantidad,
+                                        pointRadius: 7,
+                                    },
+                                ]
+                            },
+                            options: {
+                                resposive: true,
+                                scales: {
+                                    xAxes: [{
+                                        gridLines: {
+                                            display: true
+                                        },
+                                        ticks: {
+                                            maxTicksLimit: 7
+                                        }
+                                    }],
+                                    yAxes: [{
+                                        gridLines: {
+                                            display: true
+                                        },
+                                        ticks: {
+                                            beginAtZero: true
+                                        },
+                                    }]
+                                }
+                            }
+
+
+                        })
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+
+                jQuery.ajax({
+                    url: '@Url.Action("Graficos2", "Home")',
+                    type: 'GET',
+                    datType: "json",
+                    contentType: "application/json; charset=utf-8",
+                    success: function (data) {
+
+                        var arrayMeses = [];
+                        var arrayCantidad = [];
+
+                        for (var i = 0; i < data.length; i++) {
+
+                            arrayMeses.push(data[i].Producto)
+                            arrayCantidad.push(data[i].Cantidad)
+                        }
+
+                        var controlPie = document.getElementById("myPieChart");
+
+                        var graficoPie = new Chart(controlPie, {
+                            type: 'doughnut',
+                            data: {
+                                labels: arrayMeses,
+                                datasets: [{
+                                        label: "Producto:",
+                                        backgroundColor: "#ddf6f6",
+                                        data: arrayCantidad,
+                                    backgroundColor: ['#027eb5aa', '#ff00009c', '#2eb50099', '#ffd8009b', '#6e5aaaac'],
+                                    borderColor: ['#000000b4', '#000000b4', '#000000b4', '#000000b4', '#000000b4'], // Color del borde
+
+                                }],
+                            },
+                            options: {
+                                resposive: true,
+                            }
+                        });
+
+                    },
+                    error: function (error) {
+                        console.log(error)
+                    }
+                });
+
+            jQuery.ajax({
+                url: '@Url.Action("ListarLinea", "Home")',
+                type: 'GET',
+                datType: "json",
+                contentType: "application/json; charset=utf-8",
+                success: function (data) {
+
+                    var arrayMeses = [];
+                    var arrayCantidad = [];
+
+                    for (var i = 0; i < data.length; i++) {
+
+                        arrayMeses.push(data[i].Meses)
+                        arrayCantidad.push(data[i].Cantidad)
+                    }
+
+                    var controlLine = document.getElementById("myLineChart");
+
+                    var graficoPie = new Chart(controlLine, {
+                        type: 'horizontalBar',
+                        data: {
+                            labels: arrayMeses,
+                            datasets: [
+                                {
+                                    label: "Total",
+                                    backgroundColor: ['#83cb67a7', '#54a4ba8c', '#6e5aaaac', '#83cb67a7', '#54a4ba8c', '#6e5aaaac', '#83cb67a7', '#54a4ba8c', '#6e5aaaac', '#83cb67a7', '#54a4ba8c', '#6e5aaaac', '#83cb67a7', '#54a4ba8c', '#6e5aaaac', '#83cb67a7', '#54a4ba8c', '#6e5aaaac'],
+                                    borderColor: ['#3b8235', '#327fa7', '#50388a', '#3b8235', '#327fa7', '#50388a', '#3b8235', '#327fa7', '#50388a', '#3b8235', '#327fa7', '#50388a', '#3b8235', '#327fa7', '#50388a', '#3b8235', '#327fa7', '#50388a'], // Color del borde
+                                    borderWidth: 3,// Ancho del borde
+                                    data: arrayCantidad,
+                                }
+                            ]
+                        },
+                        options: {
+                            resposive: true,
+                            scales: {
+                                xAxes: [{
+                                    gridLines: {
+                                        display: false
+                                    },
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }],
+                                yAxes: [{
+                                    ticks: {
+                                        beginAtZero: true
+                                    }
+                                }]
+                            }
+                        }
+
+                    });
+
+                },
+                error: function (error) {
+                    console.log(error)
+                }
+
+            });
+        })
+
+        let tabladata;
+
+        tabladata = $("#tabla").DataTable({
+                'destroy': true,
+                'paging': true,
+                'lengthChange': true,
+                'searching': true,
+                'ordering': true,
+                'info': true,
+                'autoWidth': true,
+                responsive: true,
+                ordering: false,
+                    "ajax": {
+                        url: '@Url.Action("ObtenerVenta", "Home")',
+                        type: "GET",
+                        dataType: "json"
+                    },
+                    "columns": [
+                        { "data": "Cliente" },
+                        { "data": "Telefono" },
+                        { "data": "Producto" },
+                        { "data": "Cantidad" },
+                        { "data": "Total" },
+                        { "data": "Fecha" },
+                        { "data": "Vendedor" },
+                        { "data": "IDventa" },
+                        { "data": "Documento" },
+                    ],
+                    "language": {
+                        "url": "https://cdn.datatables.net/plug-ins/1.11.5/i18n/es-ES.json"
+                    }
+        });
+
+            var nueva_url = '@Url.Action("ObtenerVenta", "Home")'
+            tabladata.ajax.url(nueva_url).load();
+
+    </script>
+}
+
+@section scripts{
+    <script src="@Url.Content("~/Scripts/Views/Home_Index.js")" type="text/javascript"></script>
+}
+
