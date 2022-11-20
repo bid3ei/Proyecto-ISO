@@ -1274,28 +1274,6 @@ begin
 	end catch
 end
 
---PROCEDIMIENTO PARA EXPORTAR EXCEL VENTAS
-create procedure usp_rptVentaExcel (
-@FechaInicio date,
-@FechaFin date,
-@IdTienda int = 0
-)
-as
-begin
-
- select convert(char(10), v.FechaRegistro ,103)[FechaVenta],v.Codigo[NumeroDocumento],v.TipoDocumento[TipoDocumento],
- t.Nombre[NombreTienda], t.RUC[RucTienda],
- concat(u.Nombres,' ', u.apellidos)[NombreEmpleado],
- v.CantidadTotal[CantidadUnidadesVendidas],v.CantidadProducto[CantidadProductos],v.TotalCosto[TotalVenta] 
- from VENTA v
- inner join TIENDA t on t.IdTienda = v.IdTienda
- inner join USUARIO u on u.IdUsuario = v.IdUsuario
- where 
- CONVERT(date,v.FechaRegistro) between @FechaInicio and @FechaFin 
- and v.IdTienda = iif(@IdTienda =0 ,v.IdTienda,@IdTienda)
-end
-go
-
 /********************* DASHBOARD **************************/
 
 -- TARJETAS EN EL DASHBOARD

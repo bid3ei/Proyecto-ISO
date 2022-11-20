@@ -16,3 +16,9 @@ C:\Users\WINDOWS\Desktop\Proyecto ISO\VentasWeb\CapaModelo\obj\Debug\CapaModelo.
 C:\Users\WINDOWS\Desktop\Proyecto ISO\VentasWeb\CapaModelo\obj\Debug\CapaModelo.csproj.CoreCompileInputs.cache
 C:\Users\WINDOWS\Desktop\Proyecto ISO\VentasWeb\CapaModelo\obj\Debug\CapaModelo.dll
 C:\Users\WINDOWS\Desktop\Proyecto ISO\VentasWeb\CapaModelo\obj\Debug\CapaModelo.pdb
+Z:\Universidad\Software 1\ISO\Proyecto-ISO\Proyect\VentasWeb\CapaModelo\bin\Debug\CapaModelo.dll
+Z:\Universidad\Software 1\ISO\Proyecto-ISO\Proyect\VentasWeb\CapaModelo\bin\Debug\CapaModelo.pdb
+Z:\Universidad\Software 1\ISO\Proyecto-ISO\Proyect\VentasWeb\CapaModelo\obj\Debug\CapaModelo.csproj.AssemblyReference.cache
+Z:\Universidad\Software 1\ISO\Proyecto-ISO\Proyect\VentasWeb\CapaModelo\obj\Debug\CapaModelo.csproj.CoreCompileInputs.cache
+Z:\Universidad\Software 1\ISO\Proyecto-ISO\Proyect\VentasWeb\CapaModelo\obj\Debug\CapaModelo.dll
+Z:\Universidad\Software 1\ISO\Proyecto-ISO\Proyect\VentasWeb\CapaModelo\obj\Debug\CapaModelo.pdb
